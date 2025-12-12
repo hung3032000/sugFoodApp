@@ -1,6 +1,6 @@
 import svgPaths from "./svg-s1hpubzamr";
 import imgContainer from "figma:asset/a5a72968952a57b811830c9a36b9e06cb7357539.png";
-
+import Image from "next/image";
 function Checkbox() {
   return (
     <div className="relative shrink-0 size-[16px]" data-name="Checkbox">
@@ -179,7 +179,7 @@ function ImageDeliciousFood() {
 function Container3() {
   return (
     <div className="absolute h-[588.266px] left-0 top-0 w-[576px]" data-name="Container">
-      <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgContainer} />
+      <Image alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgContainer} />
     </div>
   );
 }
