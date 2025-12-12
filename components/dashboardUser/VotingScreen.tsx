@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Users, Clock, Crown, ThumbsUp, Info } from 'lucide-react';
 import { Screen, Restaurant } from '../../app/page';

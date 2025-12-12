@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { ArrowLeft, MapPin, Clock, DollarSign, Star, Phone, Share2, Heart, Navigation, TrendingUp } from 'lucide-react';
 import { Screen, Restaurant } from '../../app/page';

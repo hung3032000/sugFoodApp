@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { Copy, Users, Link2, ArrowRight, UserPlus, Check } from 'lucide-react';
 import { Screen, Restaurant } from '../../app/page';

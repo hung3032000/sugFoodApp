@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { Check, Star, ThumbsUp, MessageSquare, Camera, Upload, ArrowRight } from 'lucide-react';
 import { Screen, Restaurant } from '../../app/page';
