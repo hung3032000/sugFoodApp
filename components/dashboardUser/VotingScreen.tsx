@@ -3,10 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Users, Clock, Crown, ThumbsUp, Info } from 'lucide-react';
 import { Screen, Restaurant } from '../../app/page';
 import Image from "next/image";
-interface VotingScreenProps {
-  onNavigate: (screen: Screen) => void;
-  roomCode: string;
-}
+import { redirect } from "next/navigation";
 
 interface VotingOption {
   id: string;
@@ -19,7 +16,7 @@ interface VotingOption {
   distance: string;
 }
 
-export default function VotingScreen({ onNavigate, roomCode }: VotingScreenProps) {
+export default function VotingScreen() {
   const [timeRemaining, setTimeRemaining] = useState(1800); // 30 minutes in seconds
   const [myVote, setMyVote] = useState<string | null>(null);
   const [options, setOptions] = useState<VotingOption[]>([
@@ -108,7 +105,7 @@ export default function VotingScreen({ onNavigate, roomCode }: VotingScreenProps
   const winner = sortedOptions[0];
 
   const handleConfirmChoice = () => {
-    onNavigate('rating');
+    redirect("/room");
   };
 
   return (
@@ -118,14 +115,17 @@ export default function VotingScreen({ onNavigate, roomCode }: VotingScreenProps
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-4">
             <button
-              onClick={() => onNavigate('home')}
+              onClick={() => redirect("/room")}
               className="p-2 hover:bg-neutral-100 rounded-full transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <div className="text-center flex-1">
               <h4>Group Voting</h4>
-              <p className="text-xs text-neutral-500">Room: {roomCode}</p>
+              <p className="text-xs text-neutral-500">Room: 
+                {/* {roomCode} */}
+                
+                </p>
             </div>
             <div className="w-10"></div>
           </div>
@@ -162,6 +162,8 @@ export default function VotingScreen({ onNavigate, roomCode }: VotingScreenProps
             <Image
               src={winner.image}
               alt={winner.name}
+              width={80}
+              height={80}
               className="w-20 h-20 rounded-xl object-cover"
             />
             <div className="flex-1">
@@ -215,6 +217,8 @@ export default function VotingScreen({ onNavigate, roomCode }: VotingScreenProps
                     <Image
                       src={option.image}
                       alt={option.name}
+                      width={80}
+                      height={80}
                       className="w-16 h-16 rounded-xl object-cover flex-shrink-0"
                     />
 

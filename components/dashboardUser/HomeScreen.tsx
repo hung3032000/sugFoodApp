@@ -3,10 +3,7 @@ import React, { useState } from 'react';
 import { Search, Filter, MapPin, Users, User, Bot, Map, List, TrendingUp, Star, X, Send, SlidersHorizontal, DollarSign, Navigation2, Heart, History, Sparkles, Clock, ArrowRight } from 'lucide-react';
 import { Screen, Restaurant } from '../../app/page';
 import Image from "next/image";
-interface HomeScreenProps {
-  onNavigate: (screen: Screen, restaurant?: Restaurant) => void;
-  onGroupModeChange: (isGroup: boolean) => void;
-}
+import { redirect } from "next/navigation";
 
 const mockRestaurants: Restaurant[] = [
   {
@@ -101,7 +98,7 @@ const mockRestaurants: Restaurant[] = [
   }
 ];
 
-export default function HomeScreen({ onNavigate, onGroupModeChange }: HomeScreenProps) {
+export default function HomeScreen() {
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
   const [searchQuery, setSearchQuery] = useState('');
   const [showAI, setShowAI] = useState(false);
@@ -122,15 +119,15 @@ export default function HomeScreen({ onNavigate, onGroupModeChange }: HomeScreen
 
   const handleModeSelect = (mode: 'solo' | 'group') => {
     if (mode === 'group') {
-      onGroupModeChange(true);
-      onNavigate('room');
+      // onGroupModeChange(true);
+      redirect("/room");
     } else {
-      onGroupModeChange(false);
+      // onGroupModeChange(false);
     }
   };
 
   const handleRestaurantClick = (restaurant: Restaurant) => {
-    onNavigate('detail', restaurant);
+    // onNavigate('detail', restaurant);
   };
 
   const handleAISubmit = (e: React.FormEvent) => {
@@ -653,6 +650,7 @@ export default function HomeScreen({ onNavigate, onGroupModeChange }: HomeScreen
                 <Image 
                   src={mockRestaurants[5].image} 
                   alt="Street Eats"
+                  fill
                   className="w-full h-full object-cover rounded-xl"
                 />
               </div>
@@ -678,6 +676,7 @@ export default function HomeScreen({ onNavigate, onGroupModeChange }: HomeScreen
                   <Image
                     src={restaurant.image}
                     alt={restaurant.name}
+                    fill
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-2 right-2 bg-white px-2 py-1 rounded-full text-xs">
@@ -715,6 +714,7 @@ export default function HomeScreen({ onNavigate, onGroupModeChange }: HomeScreen
                     <Image
                       src={restaurant.image}
                       alt={restaurant.name}
+                      fill
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-2 right-2 bg-white px-2 py-1 rounded-full text-xs">
@@ -803,6 +803,7 @@ export default function HomeScreen({ onNavigate, onGroupModeChange }: HomeScreen
                   <Image
                     src={restaurant.image}
                     alt={restaurant.name}
+                    fill
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-3 right-3 bg-white px-3 py-1 rounded-full text-sm">
@@ -960,6 +961,7 @@ export default function HomeScreen({ onNavigate, onGroupModeChange }: HomeScreen
                                 <Image
                                   src={restaurant.image}
                                   alt={restaurant.name}
+                                  fill
                                   className="w-20 h-20 rounded-lg object-cover flex-shrink-0"
                                 />
                                 <div className="flex-1 min-w-0">

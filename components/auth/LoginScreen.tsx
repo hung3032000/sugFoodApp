@@ -15,7 +15,7 @@ export default function LoginForm() {
     e.preventDefault();
     // TODO: call API login
     console.log({ email, password, rememberMe });
-    redirect("/mainPage");
+    redirect("/home");
   };
 
   return (

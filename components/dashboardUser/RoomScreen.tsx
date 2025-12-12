@@ -2,24 +2,21 @@
 import React, { useState } from 'react';
 import { Copy, Users, Link2, ArrowRight, UserPlus, Check } from 'lucide-react';
 import { Screen, Restaurant } from '../../app/page';
-
-interface RoomScreenProps {
-  onNavigate: (screen: Screen) => void;
-  onRoomCode: (code: string) => void;
-}
-
-export default function RoomScreen({ onNavigate, onRoomCode }: RoomScreenProps) {
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+export default function RoomScreen() {
   const [mode, setMode] = useState<'create' | 'join'>('create');
   const [joinCode, setJoinCode] = useState('');
   const [roomName, setRoomName] = useState('');
   const [generatedCode, setGeneratedCode] = useState('');
   const [copied, setCopied] = useState(false);
   const [participants, setParticipants] = useState<string[]>(['You']);
+  const router = useRouter();
 
   const generateRoomCode = () => {
     const code = Math.random().toString(36).substring(2, 8).toUpperCase();
     setGeneratedCode(code);
-    onRoomCode(code);
+    // onRoomCode(code);
     return code;
   };
 
@@ -31,8 +28,8 @@ export default function RoomScreen({ onNavigate, onRoomCode }: RoomScreenProps) 
 
   const handleJoinRoom = (e: React.FormEvent) => {
     e.preventDefault();
-    onRoomCode(joinCode);
-    onNavigate('voting');
+    // onRoomCode(joinCode);
+    router.push(`/voting/${joinCode}`);
   };
 
   const handleCopyCode = () => {
@@ -43,7 +40,7 @@ export default function RoomScreen({ onNavigate, onRoomCode }: RoomScreenProps) 
   };
 
   const handleStartVoting = () => {
-    onNavigate('voting');
+    router.push(`/voting/${generatedCode}`);
   };
 
   return (
@@ -234,7 +231,7 @@ export default function RoomScreen({ onNavigate, onRoomCode }: RoomScreenProps) 
 
         <div className="text-center mt-6">
           <button
-            onClick={() => onNavigate('home')}
+            onClick={() => redirect('/home')}
             className="text-white hover:text-white/80 text-sm"
           >
             ← Back to Home

@@ -25,5 +25,5 @@ export interface VoteData {
 
 
 export default function Home() {
-  redirect("/home");
+  redirect("/login");
 }
