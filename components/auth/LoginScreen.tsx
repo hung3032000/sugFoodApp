@@ -1,13 +1,12 @@
-"use client";
-
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import svgPaths from '../imports/svg-s1hpubzamr';
 import imgContainer from '../../assets/login.png';
 import Image from "next/image";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("p@gmail.com");
+  const [password, setPassword] = useState("1");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -15,6 +14,7 @@ export default function LoginForm() {
     e.preventDefault();
     // TODO: call API login
     console.log({ email, password, rememberMe });
+    redirect("/mainPage");
   };
 
   return (
@@ -121,7 +121,7 @@ export default function LoginForm() {
                 {/* Sign Up Link */}
                 <div className="text-center w-full" data-name="Paragraph">
                   <p className="font-['Arimo',sans-serif] text-[#4a5565] text-[14px] inline">
-                    Don&apos;t have an account?{' '}
+                    Don&apos;t have an account?
                     <a href="#" className="font-['Arimo',sans-serif] text-[#101828] hover:underline" data-name="Link">
                       Sign Up
                     </a>
